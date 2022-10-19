@@ -27,7 +27,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  double sum = 0;
+  final TextEditingController _ansController = TextEditingController();
+
+  List<double> num = [0, 0, 0, 0, 0, 0];
 
   @override
   Widget build(BuildContext context) {
@@ -38,48 +40,81 @@ class _MyHomePageState extends State<MyHomePage> {
           TextField(
             onChanged: (value) {
               setState(() {
-                sum += double.parse(value);
+                num[0] = _stringToDouble(value);
+                _ansController.text = '${sum(num)}';
               });
             },
+            decoration: _inputDecoration,
           ),
           TextField(
             onChanged: (value) {
               setState(() {
-                sum += double.parse(value);
+                num[1] = _stringToDouble(value);
+                _ansController.text = '${sum(num)}';
               });
             },
+            decoration: _inputDecoration,
           ),
           TextField(
             onChanged: (value) {
               setState(() {
-                sum += double.parse(value);
+                num[2] = _stringToDouble(value);
+                _ansController.text = '${sum(num)}';
               });
             },
+            decoration: _inputDecoration,
           ),
           TextField(
             onChanged: (value) {
               setState(() {
-                sum += double.parse(value);
+                num[3] = _stringToDouble(value);
+                _ansController.text = '${sum(num)}';
               });
             },
+            decoration: _inputDecoration,
           ),
           TextField(
             onChanged: (value) {
               setState(() {
-                sum += double.parse(value);
+                num[4] = _stringToDouble(value);
+                _ansController.text = '${sum(num)}';
               });
             },
+            decoration: _inputDecoration,
           ),
           TextField(
             onChanged: (value) {
               setState(() {
-                sum += double.parse(value);
+                num[5] = _stringToDouble(value);
+                _ansController.text = '${sum(num)}';
               });
             },
+            decoration: _inputDecoration,
           ),
-          Text('$sum', style: const TextStyle(fontSize: 22))
+          TextField(
+            controller: _ansController,
+          )
         ],
       ),
     );
   }
+
+  static const _inputDecoration = InputDecoration(border: OutlineInputBorder());
+
+  static double _stringToDouble(String value) {
+    try {
+      return double.parse(value);
+    } on FormatException catch (e) {
+      print(e);
+      return 0;
+    }
+  }
+}
+
+double sum(List<double> num) {
+  double ans = 0;
+  for (double element in num) {
+    ans += element;
+  }
+  return ans;
 }
