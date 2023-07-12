@@ -1,58 +1,108 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
+  <title>Right Developers - Portfolio</title>
+  <style>
+    /* Add your custom CSS styles here */
 
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
 
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <!-- <base href="/"> -->
+    h1 {
+      margin: 0;
+    }
 
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+    nav {
+      background-color: #f4f4f4;
+      padding: 10px;
+    }
 
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="infolabz_solution">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+    nav ul li {
+      display: inline-block;
+      margin: 0 10px;
+    }
 
-  <title>infolabz_solution</title>
-  <link rel="manifest" href="manifest.json">
+    nav ul li a {
+      color: #333;
+      text-decoration: none;
+      padding: 5px;
+    }
 
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = '2489027013';
-  </script>
-  <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
+    section {
+      padding: 20px;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-  <script>
-    window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        }
-      }).then(function(engineInitializer) {
-        return engineInitializer.initializeEngine();
-      }).then(function(appRunner) {
-        return appRunner.runApp();
-      });
-    });
-  </script>
+  <header>
+    <h1>Right Developers</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="home">
+    <h2>Welcome to Right Developers</h2>
+    <p>We provide innovative IT solutions tailored to your needs.</p>
+  </section>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Right Developers is a leading IT solutions provider, specializing in web and mobile app development, custom software solutions, and more.</p>
+  </section>
+
+  <section id="services">
+    <h2>Our Services</h2>
+    <ul>
+      <li>Web Development</li>
+      <li>Mobile App Development</li>
+      <li>Custom Software Development</li>
+      <li>E-commerce Solutions</li>
+      <li>UI/UX Design</li>
+      <li>Quality Assurance</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Let's discuss how we can help you achieve your goals.</p>
+    <p>Email: info@rightdevelopers.com</p>
+    <p>Phone: +1 123-456-7890</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2023 Right Developers. All rights reserved.</p>
+  </footer>
 </body>
 </html>
