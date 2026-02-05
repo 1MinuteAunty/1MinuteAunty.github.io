@@ -1,108 +1,148 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Right Developers - Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Selection Menu</title>
   <style>
-    /* Add your custom CSS styles here */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background-color: #333;
-      color: #fff;
       padding: 20px;
-      text-align: center;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     h1 {
-      margin: 0;
+      margin-bottom: 20px;
     }
 
-    nav {
-      background-color: #f4f4f4;
-      padding: 10px;
+    p {
+      margin-bottom: 15px;
     }
 
-    nav ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      text-align: center;
+    #selectionMenu {
+      position: absolute;
+      display: none;
+      background: #333;
+      color: white;
+      border-radius: 6px;
+      padding: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      z-index: 1000;
     }
 
-    nav ul li {
-      display: inline-block;
-      margin: 0 10px;
+    #selectionMenu button {
+      background: transparent;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 4px;
+      margin: 0 2px;
     }
 
-    nav ul li a {
-      color: #333;
-      text-decoration: none;
-      padding: 5px;
-    }
-
-    section {
-      padding: 20px;
-      text-align: center;
-    }
-
-    footer {
-      background-color: #333;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
+    #selectionMenu button:hover {
+      background: #555;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Right Developers</h1>
-  </header>
+  <h1>Custom Selection Menu Demo</h1>
+  
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  
+  <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  
+  <p>Select any text on this page to see the custom menu appear. Try it on both desktop and mobile devices!</p>
 
-  <nav>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <div id="selectionMenu">
+    <button id="copyBtn">Copy</button>
+    <button id="shareBtn">Share</button>
+    <button id="searchBtn">Search</button>
+  </div>
 
-  <section id="home">
-    <h2>Welcome to Right Developers</h2>
-    <p>We provide innovative IT solutions tailored to your needs.</p>
-  </section>
+  <script>
+    const menu = document.getElementById('selectionMenu');
+    const copyBtn = document.getElementById('copyBtn');
+    const shareBtn = document.getElementById('shareBtn');
+    const searchBtn = document.getElementById('searchBtn');
+    
+    let selectedText = '';
 
-  <section id="about">
-    <h2>About Us</h2>
-    <p>Right Developers is a leading IT solutions provider, specializing in web and mobile app development, custom software solutions, and more.</p>
-  </section>
+    // Disable right-click menu
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+    });
 
-  <section id="services">
-    <h2>Our Services</h2>
-    <ul>
-      <li>Web Development</li>
-      <li>Mobile App Development</li>
-      <li>Custom Software Development</li>
-      <li>E-commerce Solutions</li>
-      <li>UI/UX Design</li>
-      <li>Quality Assurance</li>
-    </ul>
-  </section>
+    // Show menu on text selection
+    function showMenu() {
+      const selection = window.getSelection();
+      selectedText = selection.toString().trim();
+      
+      if (selectedText.length > 0) {
+        const range = selection.getRangeAt(0);
+        const rect = range.getBoundingClientRect();
+        
+        // Position menu above selection
+        menu.style.left = rect.left + (rect.width / 2) - (menu.offsetWidth / 2) + window.scrollX + 'px';
+        menu.style.top = rect.top + window.scrollY - menu.offsetHeight - 10 + 'px';
+        menu.style.display = 'block';
+      } else {
+        menu.style.display = 'none';
+      }
+    }
 
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>Let's discuss how we can help you achieve your goals.</p>
-    <p>Email: info@rightdevelopers.com</p>
-    <p>Phone: +1 123-456-7890</p>
-  </section>
+    // Hide menu when clicking outside
+    function hideMenu() {
+      menu.style.display = 'none';
+    }
 
-  <footer>
-    <p>&copy; 2023 Right Developers. All rights reserved.</p>
-  </footer>
+    // Desktop: mouse selection
+    document.addEventListener('mouseup', (e) => {
+      if (!menu.contains(e.target)) {
+        setTimeout(showMenu, 10);
+      }
+    });
+
+    // Mobile: touch selection
+    document.addEventListener('selectionchange', () => {
+      setTimeout(showMenu, 10);
+    });
+
+    // Hide menu on click outside
+    document.addEventListener('mousedown', (e) => {
+      if (!menu.contains(e.target)) {
+        setTimeout(hideMenu, 100);
+      }
+    });
+
+    // Copy action
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(selectedText).then(() => {
+        alert('Copied: ' + selectedText);
+        hideMenu();
+      });
+    });
+
+    // Share action
+    shareBtn.addEventListener('click', () => {
+      alert('Share: ' + selectedText);
+      hideMenu();
+    });
+
+    // Search action
+    searchBtn.addEventListener('click', () => {
+      window.open('https://www.google.com/search?q=' + encodeURIComponent(selectedText), '_blank');
+      hideMenu();
+    });
+  </script>
 </body>
 </html>
